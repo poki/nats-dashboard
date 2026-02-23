@@ -1,12 +1,14 @@
 {
   "servers": [
     {
-      "name": "localhost",
+      "name": "nats-0",
       "url": "http://localhost:8222"
-    },
-    {
-      "name": "demo.nats.io",
-      "url": "https://demo.nats.io:8222"
     }
-  ]
+  ],
+  "discovery": {
+    "enabled": true,
+    "maxReplicas": 20,
+    "timeout": 2000,
+    "interval": 30000
+  }
 }

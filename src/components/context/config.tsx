@@ -13,10 +13,40 @@ export interface Server {
   url: string;
 }
 
+export interface DiscoveryConfig {
+  /**
+   * Enable automatic replica discovery.
+   *
+   * When enabled the dashboard probes sequential ports starting from the first
+   * server in `servers` (e.g. :8222, :8223, :8224 …) and adds every reachable
+   * NATS instance to the replica list automatically.
+   */
+  enabled: boolean;
+  /**
+   * Upper bound on the number of replicas to probe.
+   *
+   * Scanning also stops at the first unreachable port, so in practice fewer
+   * requests are made. @default 20
+   */
+  maxReplicas?: number;
+  /**
+   * Per-probe timeout in milliseconds.
+   *
+   * Keep this short — connection-refused on localhost is near-instant.
+   * Increase only if your replicas are behind a remote firewall. @default 2000
+   */
+  timeout?: number;
+  /**
+   * How often (in ms) to re-scan for new / removed replicas while monitoring
+   * is active. Set to 0 to disable periodic re-scan. @default 30000
+   */
+  interval?: number;
+}
+
 export interface Config {
   /** Default NATS server. */
   server?: Server;
-  /** Default NATS servers list. */
+  /** Default NATS servers list (also used as seed for discovery). */
   servers: Server[];
   /**
    * Hide the server URL input.
@@ -25,6 +55,13 @@ export interface Config {
    * Useful for instances monitoring a single NATS server.
    */
   hideServerInput: boolean;
+  /**
+   * Automatic replica discovery via sequential port scanning.
+   *
+   * When enabled, the static `servers` list is replaced at runtime by
+   * whatever is reachable starting from the first server's port.
+   */
+  discovery?: DiscoveryConfig;
 }
 
 const defaultConfig = {
