@@ -5,6 +5,7 @@ import type { Server } from '~/components/context/config';
 
 interface StoreState {
   server: Server;
+  servers: Server[];
   active: boolean;
 }
 
@@ -13,10 +14,12 @@ interface StoreActions {
   toggleActive(): void;
   setServer(server: Server): void;
   setURL(url: string): void;
+  setServers(servers: Server[]): void;
 }
 
 const defaultStore: StoreState = {
   server: { url: '' },
+  servers: [],
   active: false,
 };
 
@@ -24,6 +27,7 @@ const defaultActions: StoreActions = {
   setActive() {},
   setServer() {},
   setURL() {},
+  setServers() {},
   toggleActive() {},
 };
 
@@ -55,6 +59,10 @@ export function StoreProvider(props: ParentProps<Props>) {
 
     setURL(url: string) {
       setState('server', 'url', url);
+    },
+
+    setServers(servers: Server[]) {
+      setState('servers', servers);
     },
   };
 

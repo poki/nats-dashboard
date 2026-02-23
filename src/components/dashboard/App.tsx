@@ -7,6 +7,7 @@ import Overview from '~/components/dashboard/pages/Overview';
 import Info from '~/components/dashboard/pages/Info';
 import Connections from '~/components/dashboard/pages/Connections';
 import JetStream from '~/components/dashboard/pages/JetStream';
+import ClusterOverview from '~/components/dashboard/pages/ClusterOverview';
 
 interface AppProps {
   /**
@@ -27,6 +28,7 @@ export default function App(props: AppProps) {
         <Route path="/info" component={Info} />
         <Route path="/connections" component={Connections} />
         <Route path="/jetstream" component={JetStream} />
+        <Route path="/cluster" component={ClusterOverview} />
       </Router>
     </Providers>
   );
