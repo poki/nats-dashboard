@@ -26,7 +26,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@tanstack/solid-query": "^5.32.0",
     "@tanstack/solid-query-devtools": "^5.32.0",
-    "astro": "^4.7.0",
+    "astro": "^6.1.6",
     "date-fns": "^2.30.0",
     "solid-js": "^1.8.17",
     "solid-transition-group": "^0.2.3",
