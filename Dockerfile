@@ -1,4 +1,4 @@
-FROM node:22.0 AS build
+FROM node:22.23.4 AS build
 ARG SITE_DOMAIN
 WORKDIR /app
 COPY package*.json ./
